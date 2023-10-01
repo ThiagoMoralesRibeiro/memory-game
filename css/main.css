@@ -1,18 +1,11 @@
-/* Reset de estilos para eliminar margens e preenchimentos padrão */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Estilo para o corpo da página */
-/* body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    text-align: center;
-} */
 
-/* Estilo para o formulário */
 form {
     background-color: #ffffff;
     max-width: 400px;
@@ -22,12 +15,12 @@ form {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo para os parágrafos dentro do formulário */
+
 p {
     margin-bottom: 10px;
 }
 
-/* Estilo para os campos de entrada de texto */
+
 input[type="number"] {
     width: 100%;
     padding: 10px;
@@ -36,7 +29,6 @@ input[type="number"] {
     border-radius: 3px;
 }
 
-/* Estilo para o botão de envio */
 input[type="submit"] {
     background-color: #007BFF;
     color: #fff;
@@ -47,7 +39,7 @@ input[type="submit"] {
     font-weight: bold;
 }
 
-/* Estilo para o botão de envio quando o mouse passa por cima */
+
 input[type="submit"]:hover {
     background-color: #0056b3;
 }
@@ -62,17 +54,16 @@ input[type="submit"]:hover {
 
 .memory-game {
     display: flex;
-    flex-wrap: wrap; /* Permite que as cartas quebrem para a próxima linha */
-    justify-content: center; /* Centraliza as cartas horizontalmente */
-    max-width: 1250px; /* Largura máxima do contêiner */
-    margin: 0 auto; /* Centraliza o contêiner horizontalmente */
+    justify-content: center; 
+    max-width: 1250px; 
+    margin: 0 auto; 
 }
 
 .memory-card{
     position: relative;
-    width: 100px; /* Largura das cartas */
-    height: 150px; /* Altura das cartas */
-    margin: 0 10px; /* Espaçamento entre as cartas */
+    width: 100px; 
+    height: 150px; 
+    margin: 0 10px; 
 }
 
 .up-card, .down-card {
