@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="./css/main.css"> -->
+    <link rel="stylesheet" href="./css/main.css"> 
     <title>Memory-game</title>
 </head>
 <body>
@@ -45,17 +45,18 @@
         if (!empty($images)) {
             echo "<section class='memory-game'>";
             for ($rowIndex=0; $rowIndex < $rows; $rowIndex++) { 
-                echo "<div class='memory-row'>";
                 for ($colIndex=0; $colIndex < $cols; $colIndex++) { 
                     $takeCard = array_shift($images); 
                     if (isset($images)) {
+                        echo '<div class="memory-card">';
                         echo '<img class="up-card" src="img/'.$takeCard.'.png" alt="">';
-                        echo '<img class="down-card" src="./img/back-card.png" "img/></div>';
+                        echo '<img class="down-card" src="./img/back-card.png" "img/>';
+                        echo '</div>';
                     }
     
-                }
-                echo "</div>";
+                }  
             }
+            
             echo "</section>";
             echo "</div>";
         }
