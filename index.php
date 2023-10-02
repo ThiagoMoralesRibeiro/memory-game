@@ -48,7 +48,7 @@
                 for ($colIndex=0; $colIndex < $cols; $colIndex++) { 
                     $takeCard = array_shift($images); 
                     if (isset($images)) {
-                        echo '<div class="memory-card">';
+                        echo '<div class="memory-card" data-number='.$takeCard. ">";
                         echo '<img class="up-card" src="img/'.$takeCard.'.png" alt="">';
                         echo '<img class="down-card" src="./img/back-card.png" "img/>';
                         echo '</div>';
@@ -62,6 +62,6 @@
         }
     }
     ?>
-
+    <script src="./js/memory-game.js"></script>
 </body>
 </html>
