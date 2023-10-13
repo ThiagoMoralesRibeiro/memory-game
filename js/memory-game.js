@@ -6,65 +6,72 @@ let firstCard, secCard;
 console.log(gameCards);
 
 function flip() {
-    gameCards.forEach(e => {
-        if (finishGame) {
-            return;
-        }
-        if (e == firstCard) {
-            return;
-        }
+    if (finishGame) {
+        return;
+    }
+    if (this == firstCard) {
+        return;
+    }
 
-        e.classList.add('flipped');
-        console.log('1');
+    this.classList.add('flipped');
+    console.log(this);
 
-        if (!flippedCard) {
-            flippedCard = true;
-            firstCard = e;
-        }
+    if (!flippedCard) {
+        flippedCard = true;
+        firstCard = this;
 
-        secCard = e;
-        matchCards();
-    });
+        return;
+    }
+
+    secCard = this;
+    console.log(secCard);
+    matchCards();
+
 }
 
 function matchCards() {
     if (firstCard.dataset.number == secCard.dataset.number) {
-        deactivateCards();
+        desactivateCards();
     }
-    else{
+    else {
+        console.log('potato');
         unflip();
     }
 
 }
 
-function deactivateCards() { 
+function desactivateCards() {
     firstCard.removeEventListener('click', flip);
     secCard.removeEventListener('click', flip);
 
     reset();
 }
 
-function unflip() { 
+function unflip() {
     finishGame = true;
-    setTimeout(()=>{
+    setTimeout(() => {
         firstCard.classList.remove('flipped');
-        secondCard.classList.remove('flipped');
+        secCard.classList.remove('flipped');
 
         reset();
     }, 1000);
 }
 
-function reset(){
+function reset() {
     flippedCard = false;
     finishGame = false;
     firstCard = null;
-    secondCard = null;
+    secCard = null;
 }
 
-gameCards.forEach(cards => {
-    cards.addEventListener('click', flip);
-});
+for (let i = 0; i < gameCards.length; i++) {
+    const element = gameCards[i];
+    element.addEventListener("click", flip);
+
+}
 
 
-    
+
+
+
 
