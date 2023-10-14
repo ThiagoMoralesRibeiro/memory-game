@@ -1,3 +1,17 @@
+:root{
+    --primary-100:#8FBF9F;
+    --primary-200:#68a67d;
+    --primary-300:#24613b;
+    --accent-100:#F18F01;
+    --accent-200:#833500;
+    --text-100:#353535;
+    --text-200:#5f5f5f;
+    --bg-100:#F5ECD7;
+    --bg-200:#ebe2cd;
+    --bg-300:#c2baa6;
+}
+
+  
 
 * {
     margin: 0;
@@ -7,7 +21,7 @@
 
 
 form {
-    background-color: #ffffff;
+    background-color: var(--bg-300);
     max-width: 400px;
     margin: 0 auto;
     padding: 40px;
@@ -30,7 +44,7 @@ input[type="number"] {
 }
 
 input[type="submit"] {
-    background-color: #007BFF;
+    background-color: var(--primary-200);
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -41,26 +55,30 @@ input[type="submit"] {
 
 
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color:var(--primary-300);
 }
 
 .center-container {
+    background-color: var(--bg-100);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    border-radius: 40px;
+    
 }
 
 .memory-game {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
+    max-width: 800px;
 }
 
 .memory-card{
-    width: 200px; 
-    height: 300px; 
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
     margin: 0 10px; 
     position: relative;
     transform-style: preserve-3d;
@@ -98,6 +116,13 @@ input[type="submit"]:hover {
     transform: rotateY(180deg);
 }
 
+.timer {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #007BFF; /* Cor do cronômetro */
+}
 
 
 
