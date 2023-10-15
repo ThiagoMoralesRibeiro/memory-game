@@ -1,23 +1,10 @@
 const gameCards = document.querySelectorAll(".memory-card");
+const scoreDiv = document.querySelector("#score")
 let flippedCard = false;
 let finishGame = false;
 let firstCard, secCard;
 let attempts = 0;
 document.getElementById("attempts").innerHTML = attempts + " tentativas";
-
-//let timePoints = 1000 - timer.seconds;
-//if (timePoints < 0) {
-//    timePoints = 0;
-//}
-
-//let attemptsPoints = 1000 - (numberOfAttempts * 10);
-//if (attemptsPoints < 0) {
-//   attemptsPoints = 0
-//}
-
-//let totalPoints = timePoints + attemptsPoints;
-
-console.log(gameCards);
 
 
 let timer = {
@@ -25,6 +12,27 @@ let timer = {
     minutes: 0,
     hours: 0
 };
+
+function calcPoints(numberOfAttempts) {
+    let timePoints = 1000 - timer.seconds;
+    if (timePoints < 0) {
+        timePoints = 0;
+    }
+
+    let attemptsPoints = 1000 - (numberOfAttempts * 10);
+    if (attemptsPoints < 0) {
+       attemptsPoints = 0
+    }
+
+    let totalPoints = timePoints + attemptsPoints;
+
+    return totalPoints;
+}
+
+
+console.log(gameCards);
+
+
 
 function updateTimer() {
     timer.seconds++
@@ -80,7 +88,11 @@ function matchCards() {
         if (document.querySelectorAll('.memory-card:not(.flipped)').length == 0) {
             finishGame = true;
             pauseCronometer();
-            alert("Parabens, tu finalizou o jogo");
+            setTimeout(() => {
+                scoreDiv.classList.remove("invisible")
+                totalPoints = calcPoints(attempts);
+                document.getElementById("score").innerHTML= "Total de pontos: "+totalPoints;
+            }, 1000);
         }
     }
     else {
