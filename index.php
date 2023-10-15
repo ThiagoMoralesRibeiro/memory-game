@@ -1,10 +1,11 @@
 <?php
     session_start();
 
+    //setando a seção e colunas e linhas
     $cols = 0;
     $rows = 0;
     
-
+    //Validando se foram enviadas as dificuldades e, consequentemente, setando as linhas e colunas
     if (isset($_POST['easy'])) {
         $cols = 4;
         $rows = 3;
@@ -18,6 +19,7 @@
         $rows = 6;
     }
 
+    //Valido se foi enviado nome de algum player e já aproveito pra guardar na seção as respectivas dificuldades
     if (isset($_POST['player'])) {
         $_SESSION['player'] = $_POST['player'];
         if (isset($_POST['easy'])) {
@@ -42,7 +44,7 @@
 </head>
 <body>
     <?php
-    
+    //Optei por fazer o jogo em uma unica pagina, pq tive a ideia do layout minimalista, então eu basicamente tenho uam condição que valida se o jogo está ou não acontecendo
     if ($cols === 0 && $rows === 0) {
     ?>
     <section class="center-container">

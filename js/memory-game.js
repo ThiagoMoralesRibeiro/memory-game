@@ -1,7 +1,7 @@
-const gameCards = document.querySelectorAll(".memory-card");
-const scoreDiv = document.querySelector("#popup")
+const gameCards = document.querySelectorAll(".memory-card"); //todas as cartas
+const scoreDiv = document.querySelector("#popup"); //div que mostra a pontuação final e só aparece quando o jogo é finalizado
 let flippedCard = false;
-let finishGame = false;
+let finishGame = false; //Valida o encerramento do jogo e impede que cartas sejam viardas na func flip
 let firstCard, secCard;
 let attempts = 0;
 document.getElementById("attempts").innerHTML = attempts + " tentativas";
@@ -85,10 +85,10 @@ function flip() {
 function matchCards() {
     if (firstCard.dataset.number == secCard.dataset.number) {
         desactivateCards();
-        if (document.querySelectorAll('.memory-card:not(.flipped)').length == 0) {
+        if (document.querySelectorAll('.memory-card:not(.flipped)').length == 0) { //verifica se o numero de cartas que não possuem a classe flipped for igual a zero, significa que o jogo terminou, pois todo par encontrado fica com essa classe 
             finishGame = true;
             pauseCronometer();
-            setTimeout(() => {
+            setTimeout(() => { //setei um tempo para aparecer o total de pontos para permitir que a última carta vire por completo
                 scoreDiv.classList.remove("invisible")
                 totalPoints = calcPoints(attempts);
                 document.getElementById("score").innerHTML= "Total de pontos: "+totalPoints;
@@ -101,7 +101,7 @@ function matchCards() {
 
 }
 
-
+//Pares são desativados
 function desactivateCards() {
     firstCard.removeEventListener('click', flip);
     secCard.removeEventListener('click', flip);
@@ -133,7 +133,7 @@ for (let i = 0; i < gameCards.length; i++) {
 }
 
 document.getElementById('backButton').addEventListener('click', function() {
-    // Recarrega a página
+    // Me retorna para minha págian sem qualquer submit, que é a da escolha de dificuldades
     window.location.href = 'index.php';
 });
 
