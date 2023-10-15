@@ -35,11 +35,14 @@
     ?>
     <section class="center-container">
         <form action="" method="post">
-            <input type="text" value="" name="player">
-            <input type="submit" value="Easy" name="easy" id="easy">
-            <input type="submit" value="Medium" name="medium">
-            <input type="submit" value="Hard" name="hard">
-            <input type="submit" value="tutorial" name="tutorial">
+            <div class="cozy-input">
+                <input type="text" value="" class="quick600" name="player" placeholder="Digite seu nome aqui...">
+            </div>
+            <div class="difficulty">
+                <input type="submit" value="Easy" class="quick700" name="easy" id="easy">
+                <input type="submit" value="Medium" class="quick700" name="medium">
+                <input type="submit" value="Hard" class="quick700" name="hard">
+            </div>
         </form>
     </section>
     <?php
@@ -121,6 +124,7 @@
         }
 
         // Exibir as cartas
+        echo "<div class='full-page'>";
         echo "<section class='memory-game'>";
         for ($rowIndex = 0; $rowIndex < $rows; $rowIndex++) {
             echo '<div class="memory-col">';
@@ -135,8 +139,11 @@
         }
         echo "</section>";
     
-
+        echo "<section class='infos'>";
         echo "<div class='timer' id='timer'></div>";
+        echo "<div class='attempts' id='attempts'></div>";
+        echo "</section>";
+        echo "</div>";
         
     }
     

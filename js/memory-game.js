@@ -2,6 +2,20 @@ const gameCards = document.querySelectorAll(".memory-card");
 let flippedCard = false;
 let finishGame = false;
 let firstCard, secCard;
+let attempts = 0;
+document.getElementById("attempts").innerHTML = attempts + " tentativas";
+
+//let timePoints = 1000 - timer.seconds;
+//if (timePoints < 0) {
+//    timePoints = 0;
+//}
+
+//let attemptsPoints = 1000 - (numberOfAttempts * 10);
+//if (attemptsPoints < 0) {
+//   attemptsPoints = 0
+//}
+
+//let totalPoints = timePoints + attemptsPoints;
 
 console.log(gameCards);
 
@@ -26,22 +40,15 @@ function updateTimer() {
 
 function startCronometer() {
 
-    setInterval(updateTimer, 1000); // Inicia o cronômetro automaticamente
+    start = setInterval(updateTimer, 1000); // Inicia o cronômetro automaticamente
+}
+
+function pauseCronometer() {
+    clearInterval(start)
 }
 
 startCronometer();
 
-//let timePoints = 1000 - timer.seconds;
-//if (timePoints < 0) {
-//    timePoints = 0;
-//}
-
-//let attemptsPoints = 1000 - (numberOfAttempts * 10);
-//if (attemptsPoints < 0) {
-//   attemptsPoints = 0
-//}
-
-//let totalPoints = timePoints + attemptsPoints;
 
 function flip() {
     if (finishGame) {
@@ -52,6 +59,8 @@ function flip() {
     }
 
     this.classList.add('flipped');
+    attempts++; // Incrementa o número de tentativas
+    document.getElementById("attempts").innerHTML = attempts + " tentativas"; 
     console.log(this);
 
     if (!flippedCard) {
@@ -60,7 +69,6 @@ function flip() {
 
         return;
     }
-
     secCard = this;
     matchCards();
 
@@ -69,12 +77,18 @@ function flip() {
 function matchCards() {
     if (firstCard.dataset.number == secCard.dataset.number) {
         desactivateCards();
+        if (document.querySelectorAll('.memory-card:not(.flipped)').length == 0) {
+            finishGame = true;
+            pauseCronometer();
+            alert("Parabens, tu finalizou o jogo");
+        }
     }
     else {
         unflip();
     }
 
 }
+
 
 function desactivateCards() {
     firstCard.removeEventListener('click', flip);
