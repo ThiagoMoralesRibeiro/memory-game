@@ -1,5 +1,5 @@
 const gameCards = document.querySelectorAll(".memory-card");
-const scoreDiv = document.querySelector("#score")
+const scoreDiv = document.querySelector("#popup")
 let flippedCard = false;
 let finishGame = false;
 let firstCard, secCard;
@@ -131,6 +131,11 @@ for (let i = 0; i < gameCards.length; i++) {
     element.addEventListener("click", flip);
 
 }
+
+document.getElementById('backButton').addEventListener('click', function() {
+    // Recarrega a página
+    window.location.href = 'index.php';
+});
 
 
 

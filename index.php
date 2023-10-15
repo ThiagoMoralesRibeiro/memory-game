@@ -62,7 +62,6 @@
     else {
         $playerName = isset($_SESSION['player']) ? $_SESSION['player'] : 'Player 01';
         $difficulty = isset($_SESSION['difficulty']) ? $_SESSION['difficulty'] : 'easy';
-        echo $playerName;
 
         $numberOfCards = $cols * $rows;
         $maxNumberOfImages = 18;
@@ -154,10 +153,10 @@
             echo "<div class='attempts' id='attempts'></div>";
             echo "</section>";
 
-            echo "<section class='score invisible  quick600' id='score'>";
-            echo "<div class='timer' id='timer'></div>";
-            echo "<div class='attempts' id='attempts'></div>";
-            echo "<button>Voltar</button>";
+            echo "<section class='popup invisible quick600' id='popup'>";
+            echo "<div class='playerName quick600' id='playerName'>". "Nome do jogador: " . $playerName ."</div>";
+            echo "<div class='score' id='score'></div>";
+            echo "<button class='button-47' id='backButton'>Voltar</button>";
             echo "</section>";
 
             echo "</div>";

@@ -136,7 +136,7 @@ input[type="submit"]:hover {
     font-size: 24px;
     font-weight: 600;
     margin-top: 20px;
-    color: var(--primary-300); /* Cor do cronômetro */
+    color: var(--primary-300); 
 }
 
 .attempts{
@@ -186,8 +186,63 @@ input[type="submit"]:hover {
     gap: 20px;
 }
 
+.popup{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: var(--bg-300);
+}
+
+.score{
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-100); 
+}
+
 .invisible {
     display: none;
+}
+
+.playerName{
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-100); 
+}
+
+
+/* CSS - https://getcssscan.com/css-buttons-examples */
+.button-47 {
+  align-items: center;
+  background: var(--bg-100);
+  border: 0 solid #E2E8F0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  color: var(--text-100);
+  display: inline-flex;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  height: 36px;
+  justify-content: center;
+  line-height: 14px;
+  overflow-wrap: break-word;
+  padding: 14px;
+  text-decoration: none;
+  width: auto;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 
