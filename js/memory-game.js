@@ -15,22 +15,12 @@ let timer = {
 function updateTimer() {
     timer.seconds++
 
-    formattedSeconds = (timer.seconds < 10) ? "0" + timer.seconds : timer.seconds;
-    formattedMinutes = (timer.minutes < 10) ? "0" + timer.minutes : timer.minutes;
-    formattedHours = (timer.hours < 10) ? "0" + timer.hours : timer.hours;
+    formattedSeconds = (timer.seconds < 10) ? "0" + timer.seconds + " s" : timer.seconds + " s";
 
-    let gameTimer = formattedHours + ":" + formattedMinutes + ":" + formattedSeconds;
+    let gameTimer = formattedSeconds;
 
-    if (timer.seconds == 60) {
-        timer.seconds = 0;
-        timer.minutes++;
-    }
-
-    if (timer.minutes == 60) {
-        timer.minutes = 0;
-        timer.hours++;
-    }
-
+    console.log(timer.seconds);
+    
     document.getElementById("timer").innerHTML = gameTimer;
 }
 
@@ -40,6 +30,18 @@ function startCronometer() {
 }
 
 startCronometer();
+
+//let timePoints = 1000 - timer.seconds;
+//if (timePoints < 0) {
+//    timePoints = 0;
+//}
+
+//let attemptsPoints = 1000 - (numberOfAttempts * 10);
+//if (attemptsPoints < 0) {
+//   attemptsPoints = 0
+//}
+
+//let totalPoints = timePoints + attemptsPoints;
 
 function flip() {
     if (finishGame) {

@@ -1,14 +1,18 @@
 <?php
+    session_start();
+
     $cols = 0;
     $rows = 0;
+    $_SESSION['player'];
+    
 
     if (isset($_POST['easy'])) {
         $cols = 4;
-        $rows = 4;
+        $rows = 3;
     }
     elseif (isset($_POST['medium'])) {
-        $cols = 5;
-        $rows = 5;
+        $cols = 4;
+        $rows = 4;
     }
     elseif(isset($_POST['hard'])){
         $cols = 6;
@@ -31,6 +35,7 @@
     ?>
     <section class="center-container">
         <form action="" method="post">
+            <input type="text" value="" name="player">
             <input type="submit" value="Easy" name="easy" id="easy">
             <input type="submit" value="Medium" name="medium">
             <input type="submit" value="Hard" name="hard">
@@ -40,48 +45,96 @@
     <?php
     } 
     else {
+        $playerName = isset($_SESSION['player']) ? $_SESSION['player'] : 'Player 01';
+
         $numberOfCards = $cols * $rows;
-        $numberOfImages = $numberOfCards / 2;
-
-        //Necessito sempre ter uma réplica da minha imagem
-
-
-
-        //echo 'Colunas: '. $cols;
-        //echo ' Linhas: '. $rows;
-       
-        //echo "<br>".$numberOfCards. "<br>";
         $maxNumberOfImages = 18;
-        $images =[];
+        $images = [];
 
-        //echo $numberOfImages;
-        for ($i = 1; $i <= $maxNumberOfImages; $i++) { 
-            array_push($images, $i);
-            if (in_array($i, $images)) {
-                array_push($images, $i);
-            }
-            
-        }
-        shuffle($images);
-
-        if (!empty($images)) {
-            echo "<section class='memory-game'>";
-            for ($rowIndex = 0; $rowIndex < $rows; $rowIndex++) {
-                echo '<div class="memory-col">';
-                for ($colIndex = 0; $colIndex < $cols; $colIndex++) {
-                    $takeCard = array_shift($images);
-                    echo '<div class="memory-card" data-number=' . $takeCard . '>';
-                    if (isset($images)) {
-                        echo '<img class="up-card" src="./img/' . $takeCard . '.png" alt="">';
-                        echo '<img class="down-card" src="./img/back-card.png" alt="">';
-                        echo '</div>';
-                    }
+        // Função de geração de cartas para cada nível
+        function generateCardsEasy($maxNumberOfImages)
+        {
+            $images = [];
+        
+            $usedNumbers = [];
+        
+            for ($i=1; $i <= 6 ; $i++) { 
+                  
+                $rand = rand(1, $maxNumberOfImages);
+        
+                // Verifique se o número ainda não foi usado
+                if (!in_array($rand, $usedNumbers)) {
+                    array_push($images, $rand);
+                    array_push($images, $rand);
+        
+                    // Marque o número como usado
+                    $usedNumbers[] = $rand;
                 }
-                echo '</div>'; // Fechando a linha
             }
-            echo "</section>";
-            echo "</div>";
+        
+            shuffle($images);
+            return $images;
         }
+        
+        function generateCardsMedium($maxNumberOfImages)
+        {
+            $images = [];
+        
+            $usedNumbers = [];
+        
+            for ($i=1; $i <= 8 ; $i++) { 
+                  
+                $rand = rand(1, $maxNumberOfImages);
+        
+                // Verifique se o número ainda não foi usado
+                if (!in_array($rand, $usedNumbers)) {
+                    array_push($images, $rand);
+                    array_push($images, $rand);
+        
+                    // Marque o número como usado
+                    $usedNumbers[] = $rand;
+                }
+            }
+        
+            shuffle($images);
+            return $images;
+        }
+
+        function generateCardsHard($maxNumberOfImages)
+        {
+            $images = [];
+            for ($i = 1; $i <= $maxNumberOfImages; $i++) {
+                array_push($images, $i - 1);
+                array_push($images, $i - 1);
+            }
+            shuffle($images);
+            return $images;
+        }
+
+        // Inicializar as variáveis de imagens para o nível selecionado
+        if (isset($_POST['easy'])) {
+            $images = generateCardsEasy($maxNumberOfImages);
+        } elseif (isset($_POST['medium'])) {
+            $images = generateCardsMedium($maxNumberOfImages);
+        } elseif (isset($_POST['hard'])) {
+            $images = generateCardsHard($maxNumberOfImages);
+        }
+
+        // Exibir as cartas
+        echo "<section class='memory-game'>";
+        for ($rowIndex = 0; $rowIndex < $rows; $rowIndex++) {
+            echo '<div class="memory-col">';
+            for ($colIndex = 0; $colIndex < $cols; $colIndex++) {
+                $takeCard = array_shift($images);
+                echo '<div class="memory-card" data-number=' . $takeCard . '>';
+                echo '<img class="up-card" src="./img/' . $takeCard . '.png" alt="">';
+                echo '<img class="down-card" src="./img/back-card.png" alt="">';
+                echo '</div>';
+            }
+            echo '</div>'; // Fechando a linha
+        }
+        echo "</section>";
+    
 
         echo "<div class='timer' id='timer'></div>";
         
